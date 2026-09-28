@@ -1,0 +1,12 @@
+{
+  "name": "fake-imasage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trình dựng hội thoại kiểu iPhone chạy trên Node.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

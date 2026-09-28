@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f6f6f8">
+    <meta name="description" content="Trình dựng hội thoại kiểu iPhone, tùy chỉnh ngay trên điện thoại.">
+    <title>Messages Studio</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="studio">
+      <section class="conversation" aria-label="Bản xem trước hội thoại">
+        <div class="status-bar" aria-label="Thanh trạng thái">
+          <span id="status-time">9:41</span>
+          <div class="status-icons" aria-hidden="true">
+            <span class="signal-icon"><i></i><i></i><i></i><i></i></span>
+            <svg class="wifi-icon" viewBox="0 0 18 14"><path d="M1 4.5a12 12 0 0 1 16 0M4 7.5a7.5 7.5 0 0 1 10 0M7 10.5a3 3 0 0 1 4 0M9 13h.01" /></svg>
+            <span class="battery" role="img" aria-label="Pin 86 phần trăm"><span class="battery-level" id="battery-level"></span><span class="battery-percentage" id="battery-percentage">86</span></span>
+          </div>
+        </div>
+
+        <header class="chat-header">
+          <button class="back-button" type="button" aria-label="Quay lại"><span></span><b>12</b></button>
+          <button class="contact contact-trigger" id="contact-trigger" type="button" aria-label="Tùy chỉnh hội thoại với người nhận này">
+            <div class="avatar" role="img" aria-label="Ảnh đại diện mặc định"></div>
+            <div class="contact-name"><span id="contact-name">+84 91 2345678</span><span class="contact-chevron" aria-hidden="true"></span></div>
+          </button>
+          <div class="header-actions">
+            <button class="clear-icon-button clear-action" type="button" aria-label="Xóa tất cả tin nhắn mẫu" title="Xóa tất cả tin nhắn mẫu">
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12m-10 0 1 11h6l1-11M8 6V4h4v2m-3 3v5m2-5v5" /></svg>
+            </button>
+            <button class="video-button" type="button" aria-label="Tùy chỉnh hội thoại" title="Tùy chỉnh hội thoại">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10.5 20 7v10l-5-3.5M4 6.5h10a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z" /></svg>
+            </button>
+            <button class="create-button create-action" type="button">Tạo</button>
+          </div>
+        </header>
+
+        <div class="thread-meta"><span id="thread-date">Hôm nay</span><span id="thread-time">09:38</span></div>
+        <section class="messages" id="messages" aria-live="polite" aria-label="Tin nhắn">
+          <div class="message received"><p>Ê, mày biết ai đẹp trai khoai to nhất Việt Nam không?</p><time>09:38</time></div>
+          <div class="message sent"><p>Ơ, ai vậy mày?</p><time>09:39</time></div>
+          <div class="message received"><p>Anh Trung đẹp trai khoai to chứ ai nữa :)</p><time>09:40</time></div>
+        </section>
+
+        <form class="composer" id="composer">
+          <button class="add-button" id="add-button" type="button" aria-label="Thêm tin nhắn nhận" title="Thêm tin nhắn nhận">+</button>
+          <label class="visually-hidden" for="message-input">Tin nhắn</label>
+          <input id="message-input" type="text" placeholder="iMessage" autocomplete="off" enterkeyhint="send" maxlength="500">
+          <button class="send-button" type="submit" aria-label="Gửi tin nhắn" title="Gửi tin nhắn" disabled>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 16 0-12m0 0L5.5 8.5M10 4l4.5 4.5" /></svg>
+          </button>
+        </form>
+      </section>
+
+      <aside class="workspace-tools" aria-label="Công cụ hội thoại">
+        <div class="tools-heading">
+          <span class="eyebrow">MESSAGES STUDIO</span>
+          <h1>Dựng một cuộc trò chuyện.</h1>
+          <p>Chỉnh chi tiết, thêm lời thoại và xem bản xem trước cập nhật ngay.</p>
+        </div>
+        <button class="customize-button" id="customize-button" type="button">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M6 10h11M3 15h14M7 3v4m7 1v4m-5 1v4" /></svg>
+          Tùy chỉnh hội thoại
+        </button>
+        <div class="tool-actions">
+          <button class="tool-clear-button clear-action" type="button">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12m-10 0 1 11h6l1-11M8 6V4h4v2m-3 3v5m2-5v5" /></svg>
+            <span class="clear-action-label">Xóa tất cả tin nhắn</span>
+          </button>
+        </div>
+        <div class="tools-note"><span class="live-dot"></span>Bản xem trước tương tác</div>
+      </aside>
+    </main>
+
+    <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+      <form method="dialog" class="settings-form" id="settings-form">
+        <div class="dialog-heading">
+          <div><span class="eyebrow">CÁ NHÂN HÓA</span><h2 id="settings-title">Chi tiết hội thoại</h2></div>
+          <button class="close-button" value="cancel" aria-label="Đóng">×</button>
+        </div>
+        <label class="field-label" for="setting-name">Số điện thoại</label>
+        <input class="text-field" id="setting-name" name="name" type="tel" inputmode="tel" autocomplete="tel" maxlength="32" value="+84 912 345 678">
+        <div class="field-row thread-date-time-row">
+          <div><label class="field-label" for="setting-thread-date">Ngày hội thoại</label><input class="text-field" id="setting-thread-date" name="threadDate" type="date" required></div>
+          <div><label class="field-label" for="setting-thread-time">Giờ hội thoại</label><div class="time-field-control"><input class="text-field" id="setting-thread-time" name="threadTime" type="time" value="09:38" required></div></div>
+        </div>
+        <div class="field-row">
+          <div><label class="field-label" for="setting-time">Giờ trên thanh trạng thái</label><div class="time-field-control"><input class="text-field status-bar-time-field" id="setting-time" name="time" type="time" value="09:41" required></div></div>
+          <div><label class="field-label" for="setting-battery">Pin (%)</label><input class="text-field" id="setting-battery" name="battery" type="number" min="1" max="100" value="86" inputmode="numeric"></div>
+        </div>
+        <label class="field-label" for="setting-wallpaper">Màu nền</label>
+        <select class="text-field" id="setting-wallpaper" name="wallpaper">
+          <option value="light">Sáng</option>
+          <option value="dark">Tối</option>
+          <option value="blue">Xanh nhạt</option>
+        </select>
+        <button class="save-button" value="save">Lưu thay đổi</button>
+      </form>
+    </dialog>
+    <dialog class="settings-dialog message-dialog" id="message-dialog" aria-labelledby="message-title">
+      <form method="dialog" class="settings-form" id="message-form">
+        <div class="dialog-heading">
+          <div><span class="eyebrow">TIN NHẮN</span><h2 id="message-title">Tin nhắn mới</h2></div>
+          <button class="close-button" value="cancel" aria-label="Đóng">×</button>
+        </div>
+        <label class="field-label" for="edit-message-text">Nội dung</label>
+        <textarea class="text-field message-text-field" id="edit-message-text" name="text" maxlength="500" required></textarea>
+        <span class="field-label">Người gửi</span>
+        <div class="direction-picker">
+          <label><input type="radio" name="direction" value="received"><span id="edit-recipient-label">+84 912 345 678</span></label>
+          <label><input type="radio" name="direction" value="sent"><span>Tôi</span></label>
+        </div>
+        <label class="field-label" for="edit-message-time">Giờ gửi</label>
+        <div class="time-field-control"><input class="text-field message-time-field" id="edit-message-time" name="time" type="time" required></div>
+        <div class="message-form-actions">
+          <button class="delete-message-button" id="delete-message-button" type="button">Xóa tin nhắn</button>
+          <button class="save-button" id="message-submit-button" value="save">Thêm tin nhắn</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
