@@ -17,7 +17,17 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            set -e
+
             cd /var/www/fake-imasage
+
+            echo "==> Pull latest code"
             git pull origin main
+
+            echo "==> Install dependencies"
             npm install --omit=dev
-            pm2 restart fake-imasage
+
+            echo "==> Restart application"
+            sudo systemctl restart pm2-deploy
+
+            echo "==> Deployment completed"
