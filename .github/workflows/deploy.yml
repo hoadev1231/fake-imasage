@@ -37,6 +37,6 @@ jobs:
 
             echo "==> Check application"
             sleep 2
-            sudo systemctl is-active --quiet pm2-deploy
+            systemctl is-active --quiet pm2-deploy
 
             echo "==> Deployment completed successfully"
